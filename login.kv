@@ -1,0 +1,76 @@
+#:include connected.kv
+
+<Login>:
+
+
+    BoxLayout
+        id: login_layout
+        orientation: 'vertical'
+        padding: [10,50,10,50]
+        spacing: 50
+
+        Label:
+            text: 'City of Kingston'
+            font_size: 32
+
+        BoxLayout:
+            orientation: 'vertical'
+
+            Label:
+                text: 'Employee ID'
+                font_size: 18
+                halign: 'left'
+                text_size: root.width-20, 20
+
+            TextInput:
+                id: login
+                multiline:False
+                font_size: 28
+
+
+        # code for adding image:
+        BoxLayout:
+
+            padding:5
+
+            # Adding image from the system
+            Image:
+                # using computer path to image as source
+                source: '/Users/emilyjiang/Desktop/cityofkingstonlogo.jpeg'
+
+                # Giving the size of image
+                size_hint_x: 0.4
+
+                # allow stretching of image
+                allow_stretch: True
+
+            # Giving Label to images
+            Label:
+                text:"City of Kingston"
+                font_size:15
+                bold:True
+
+            Label:
+                text:"Programing Language"
+                font_size:10
+            # end code for inserting image
+
+        BoxLayout:
+            orientation: 'vertical'
+            Label:
+                text: 'Password'
+                halign: 'left'
+                font_size: 18
+                text_size: root.width-20, 20
+
+            TextInput:
+                id: password
+                multiline:False
+                password:True
+                font_size: 28
+
+        Button:
+            text: 'Sign in'
+            font_size: 24
+
+            on_press: root.do_login(login.text, password.text)
