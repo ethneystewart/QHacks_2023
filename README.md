@@ -1,4 +1,4 @@
-# QHacks_2023 - Garabge Kingston
+# QHacks_2023 - Garbage Kingston
 
 
 ## Contributors:
