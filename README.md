@@ -1,4 +1,4 @@
-# QHacks_2023 - Garbage Kingston
+# QHacks_2023 - Waste Notify
 
 
 ## Contributors:
