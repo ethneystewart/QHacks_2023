@@ -19,4 +19,4 @@ Email: '19lm34@queensu.ca'<br>
 This is a IOS/Android app built using Python-Kivy. 
 
 # Setup Details:
-Require Kivy package
+Requires kivy package
