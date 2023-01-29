@@ -8,6 +8,12 @@ from kivy.app import App
 from kivy.lang import Builder
 from kivy.uix.screenmanager import Screen
 from kivy.uix.widget import Widget
+import smtplib
+
+
+
+
+
 
 class LoginScreen(Screen):
     pass
@@ -24,7 +30,8 @@ class CheckBoxScreen(Screen):
             output = ''
             for x in CheckBoxScreen.checks:
                 output = f'{output} {x} ; {new_line}'
-            self.ids.output_label.text = f'This is wrong with your waste: {output}'
+            self.ids.output_label.text = f'This is wrong with your waste:{new_line}{output}'
+            mes = self.ids.output_label.text
         else:
             new_line = '\n'
             CheckBoxScreen.checks.remove(problem)
@@ -32,6 +39,7 @@ class CheckBoxScreen(Screen):
             for x in CheckBoxScreen.checks:
                 output = f'{output} {x} ; {new_line}'
             self.ids.output_label.text = f'This is wrong with your waste: {output}'
+            mes = self.ids.output_label.text
         print(value)
 
     pass
@@ -45,6 +53,30 @@ class MainApp(App):
     def change_screen(self, screen_name):
         screen_manager = self.root.ids['screen_manager']
         screen_manager.current = screen_name #change current screen name to other
+
+    def submit_click(self):
+        f = open("data.txt", "w")
+        f.write('\n')  # overwrite previous
+        f = open("data.txt", "a")
+        for checks in CheckBoxScreen.checks:
+            f.write(checks)
+            f.write('\n')
+        f.close()
+        str = ''
+        for check in CheckBoxScreen.checks:
+            str += check
+            str += '\n'
+        server = smtplib.SMTP('smtp.gmail.com', 587)
+        # start the server connection
+        server.starttls()
+        # login to the server using your email and password
+        server.login("ethney@cyberstewart.com", "******")
+        to_email = "emilyemilyjiang@outlook.com"
+        subject = 'This is wrong with your waste:'
+        message = subject + str
+        server.sendmail("ethney@cyberstewart.com", to_email, message)
+        # close the server connection
+        server.quit()
 
 
 
